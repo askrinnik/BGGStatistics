@@ -19,13 +19,13 @@ namespace BggApi.Models
     public string Name { get; set; }
 
     [XmlAttribute("startposition")]
-    public byte StartPosition { get; set; }
+    public string StartPosition { get; set; }
 
     [XmlAttribute("color")]
     public string Сolor { get; set; }
 
     [XmlAttribute("score")]
-    public ushort Score { get; set; }
+    public short Score { get; set; }
 
     [XmlAttribute("new")]
     public byte New { get; set; }

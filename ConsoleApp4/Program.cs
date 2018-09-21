@@ -1,7 +1,6 @@
 ﻿using System;
-using System.IO;
-using System.Xml.Serialization;
-using BggApi.Models;
+using System.Linq;
+using BggApi.Clients;
 
 namespace ConsoleApp4
 {
@@ -9,18 +8,27 @@ namespace ConsoleApp4
   {
     static void Main()
     {
-      PlayCollection plays;
-      var path = @"D:\Downloads\plays2.xml";
+      ReadFromWeb();
+      Console.ReadLine();
+    }
 
-      var serializer = new XmlSerializer(typeof(PlayCollection));
+    private static void ReadFromWeb()
+    {
+      var reader = new BggHttpReader();
+      var client = new BggClient(reader);
+      var plays = client.LoadPlays("MirrorBoy").Result.ToArray();
 
-      using (var reader = new StreamReader(path))
-      {
-        plays = (PlayCollection)serializer.Deserialize(reader);
-      }
+      Console.WriteLine(plays.Length);
+    }
+
+    private static void ReadFromFile()
+    {
+      var path = @"D:\Downloads\plays3.xml";
+
+      var reader = new BggFileReader(path);
+      var plays = reader.LoadPlays(null, 0).Result;
 
       Console.WriteLine(plays.Plays.Length);
-      Console.ReadLine();
     }
   }
   
