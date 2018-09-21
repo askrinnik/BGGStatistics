@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Xml.Serialization;
 using System.ComponentModel;
+using System.Xml.Serialization;
 
-namespace BggClasses
+namespace BggApi.Models
 {
   [Serializable]
   [DesignerCategory("code")]

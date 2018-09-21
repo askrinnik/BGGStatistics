@@ -1,17 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Serialization;
-using BggClasses;
+using BggApi.Models;
 
 namespace ConsoleApp4
 {
   class Program
   {
-    static void Main(string[] args)
+    static void Main()
     {
       PlayCollection plays;
       var path = @"D:\Downloads\plays2.xml";

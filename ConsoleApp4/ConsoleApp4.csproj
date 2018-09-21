@@ -50,9 +50,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BggClasses\BggClasses.csproj">
-      <Project>{c99c6f0b-2d70-4969-a2db-560748a300af}</Project>
-      <Name>BggClasses</Name>
+    <ProjectReference Include="..\BggApi\BggApi.csproj">
+      <Project>{bd83f39c-0452-4d81-bfa1-abfafba32f12}</Project>
+      <Name>BggApi</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
