@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Xml.Linq;
-using System.Xml.Serialization;
 using BggApi.Models;
 
 namespace BggApi.Clients
@@ -23,21 +16,16 @@ namespace BggApi.Clients
     public async Task<IEnumerable<PlayInfo>> LoadPlays(string userName)
     {
       var playList = new List<PlayInfo>();
-
-      var plays = await _reader.LoadPlays(userName, 1);
-      playList.AddRange(plays.Plays);
-
-
-      int restCount = plays.Total;
       var pageNum = 1;
-
-      restCount -= plays.Plays.Length;
-      pageNum++;
+      var restCount = int.MaxValue;
 
       while (restCount > 0)
       {
-        plays = await _reader.LoadPlays(userName, pageNum);
+        var plays = await _reader.LoadPlays(userName, pageNum);
         playList.AddRange(plays.Plays);
+
+        if(restCount == int.MaxValue)
+          restCount = plays.Total;
 
         restCount -= plays.Plays.Length;
         pageNum++;
