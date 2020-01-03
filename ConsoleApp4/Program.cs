@@ -31,6 +31,10 @@ namespace ConsoleApp4
 
       var winners = plays.ToPlayWinners();
 
+      foreach (var game in winners)
+        Console.WriteLine(
+          $"{game.PlayDate.ToShortDateString()}, {game.GameName}: {game.Place1Winner}, {game.Place2Winner}, {game.Place3Winner}");
+
       Console.ReadLine();
     }
 
