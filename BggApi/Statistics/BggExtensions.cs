@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using BggApi.Models;
 
@@ -23,7 +24,8 @@ namespace BggApi.Statistics
 
     private static string[] GetWinnersForPlays(IEnumerable<PlayerInfo> players, int place)
     {
-      return players.GroupBy(player => player.Score, player => player.Name).OrderByDescending(r => r.Key).Skip(place-1).First().ToArray();
+      var groups = players.GroupBy(player => player.Score, player => player.Name).OrderByDescending(r => r.Key).ToArray();
+      return groups.Length<place ? Array.Empty<string>() : groups.Skip(place-1).First().ToArray();
     }
   }
 }
